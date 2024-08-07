@@ -107,4 +107,26 @@ public class AccountDaoImpl implements IAccountDao
 			session.close();
 		}
 	}
+	
+	@Override
+	public boolean existByEmail(String email)
+	{
+		Session session = sessionFactory.openSession();
+		try
+		{
+			Long check = session
+					  .createQuery("select count(a.id) from Account a where a.email like :email", Long.class)
+					  .setParameter("email", email)
+					  .getSingleResult();
+			return check > 0;
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+		finally
+		{
+			session.close();
+		}
+	}
 }

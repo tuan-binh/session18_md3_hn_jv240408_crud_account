@@ -1,11 +1,13 @@
 package com.ra.crud_account.model;
 
+import com.ra.crud_account.validation.annotation.EmailExist;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -18,6 +20,10 @@ public class Account
 	private String fullName;
 	private String email;
 	private String password;
-	private Boolean gender;
-	private Boolean status;
+	private Boolean gender = true;
+	private Boolean status = true;
+	
+	public Account()
+	{
+	}
 }

@@ -1,13 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: binh
-  Date: 8/6/2024
-  Time: 10:00 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -21,31 +13,35 @@
 <body>
 
 <div class="container">
-    <form action="<%=request.getContextPath()%>/add" method="post">
+    <form th:action="@{/edit}" method="post" th:object="${accountEdit}">
+        <input type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="fullName">FULLNAME</label>
-            <input type="text" class="form-control" name="fullName" id="fullName" placeholder="fullName">
+            <input type="text" class="form-control" id="fullName" th:field="*{fullName}" placeholder="fullName">
+            <small th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></small>
         </div>
         <div class="form-group">
-            <label for="email">EMAIL</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="email">
+            <label>EMAIL</label>
+            <input type="text" class="form-control" th:field="*{email}" placeholder="email">
+            <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
         </div>
         <div class="form-group">
-            <label for="password">PASSWORD</label>
-            <input type="text" class="form-control" name="password" id="password" placeholder="password">
+            <label>PASSWORD</label>
+            <input type="text" class="form-control" th:field="*{password}" placeholder="password">
+            <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></small>
         </div>
         <div class="form-group">
             <label>GENDER</label>
-            <input type="radio" name="gender" id="genderTrue" value="true"> <label for="genderTrue">Nam</label>
-            <input type="radio" name="gender" id="genderFalse" value="false"> <label for="genderFalse">Nữ</label>
+            <input type="radio" th:field="*{gender}" value="true"> <label>Nam</label>
+            <input type="radio" th:field="*{gender}" value="false"> <label>Nữ</label>
         </div>
         <div class="form-group">
             <label>STATUS</label>
-            <input type="radio" name="status" id="statusTrue" value="true"> <label for="statusTrue">Hoạt động</label>
-            <input type="radio" name="status" id="statusFalse" value="false"> <label for="statusFalse">Không hoạt
+            <input type="radio" th:field="*{status}" value="true"> <label>Hoạt động</label>
+            <input type="radio" th:field="*{status}" value="false"> <label>Không hoạt
             động</label>
         </div>
-        <button type="submit">ADD</button>
+        <button type="submit">UPDATE</button>
     </form>
 </div>
 

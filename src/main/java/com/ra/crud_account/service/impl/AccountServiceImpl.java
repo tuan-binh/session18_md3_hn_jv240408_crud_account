@@ -24,7 +24,7 @@ public class AccountServiceImpl implements IAccountService
 	@Override
 	public Account findById(Long id)
 	{
-		return null;
+		return accountDao.findById(id);
 	}
 	
 	@Override

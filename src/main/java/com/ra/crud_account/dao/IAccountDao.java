@@ -17,4 +17,6 @@ public interface IAccountDao
 	
 	// 4. Xóa
 	void deleteById(Long id);
+	
+	boolean existByEmail(String email);
 }
